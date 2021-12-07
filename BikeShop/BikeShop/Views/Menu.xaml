@@ -3,12 +3,20 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+
       xmlns:local="clr-namespace:BikeShop"
+      xmlns:vm="clr-namespace:BikeShop.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="300"
       Title="Menu"
       Background="{StaticResource background}">
+
+    <Page.DataContext>
+        <vm:MenuViewModel />
+    </Page.DataContext>
     <Page.Resources>
         <Style TargetType="Button">
             <Setter Property="Template">
@@ -30,6 +38,9 @@
     </Page.Resources>
     <Grid HorizontalAlignment="Center"
           VerticalAlignment="Center">
+        <Button Margin="18,-68,204,161">
+            
+        </Button>
         <Button x:Name="button"
                 Content="Products"
                 HorizontalAlignment="Left"
@@ -39,17 +50,23 @@
                 Height="80"
                 Click="button_Click"
                 Background="#FF7161E1"
-                Foreground="White" />
+                Foreground="White"/>
+
         <Button x:Name="button1"
-                Content="Live support"
+                Content="LiveSupport"
                 HorizontalAlignment="Left"
                 Margin="109,9,0,0"
                 VerticalAlignment="Top"
                 Width="80"
                 Height="80"
-                Click="button1_Click"
                 Background="#FFDD6F31"
-                Foreground="White" />
+                Foreground="White">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click" >
+                    <i:InvokeCommandAction Command="{Binding LeftMouseButtonDown}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button> 
         <Button x:Name="button2"
                 Content="Email support"
                 HorizontalAlignment="Left"
@@ -64,7 +81,7 @@
                    HorizontalAlignment="Left"
                    Margin="53,118,0,0"
                    TextWrapping="Wrap"
-                   Text="Adventure Works"
+                   Text="{Binding TextBox_Text}"
                    VerticalAlignment="Top"
                    FontWeight="Bold"
                    FontStyle="Italic"
