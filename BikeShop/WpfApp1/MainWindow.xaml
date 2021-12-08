@@ -3,10 +3,52 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        
         xmlns:local="clr-namespace:WpfApp1"
+        xmlns:vm="clr-namespace:WpfApp1.MainViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="147" Width="316">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
     <Grid>
+        <Button  Content="Button1" IsEnabled="{Binding IsButtonEnabled}" HorizontalAlignment="Left" Margin="71,18,0,0" 
+                 VerticalAlignment="Top">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click" >
+                    <i:InvokeCommandAction Command="{Binding Mouse1_Command}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        <TextBox   x:Name="SearchBox" HorizontalAlignment="Left" Height="20" Margin="144,58,0,0" TextWrapping="Wrap" 
+                  Text="{Binding TextData}"
+                  VerticalAlignment="Top" Width="92">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="TextChanged" >
+                    <i:InvokeCommandAction Command="{Binding OnSearchCommand}" CommandParameter="{Binding ElementName=SearchBox, Path=Text}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Button  Content="Button2" HorizontalAlignment="Left" Margin="71,58,0,0" 
+            VerticalAlignment="Top" RenderTransformOrigin="0.384,-1.015">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click" >
+                    <i:InvokeCommandAction Command="{Binding Mouse2_Command}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+        <Button  Content="Button3" IsEnabled="{Binding IsButtonEnabled}" HorizontalAlignment="Left" Margin="71,101,0,0" 
+            VerticalAlignment="Top">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click" >
+                    <i:InvokeCommandAction Command="{Binding Mouse3_Command}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+
 
     </Grid>
 </Window>
