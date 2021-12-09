@@ -27,24 +27,6 @@ namespace WpfApp1.MainViewModel
             }
         }
 
-        private ICommand textChangedCommand;
-
-        public ICommand TextChangedCommand
-        {
-            get
-            {
-                return textChangedCommand ?? (textChangedCommand = new RelayCommand<object>(x =>
-                {
-                    DoTextChanged();
-                }));
-            }
-        }
-
-        private void DoTextChanged()
-        {
-            //변화는 알수 있는데, 입력된 데이터는 어떻게 받아 오지?
-            IsButtonEnabled = String.IsNullOrEmpty(textData) ? false : true;
-        }
 
         private ICommand mouse1_Command;
         public ICommand Mouse1_Command
@@ -124,7 +106,6 @@ namespace WpfApp1.MainViewModel
             set 
             { 
                 textData = value;
-                IsButtonEnabled = String.IsNullOrEmpty(textData) ? false:true ;
                 OnPropertyChanged("TextData"); 
             }
         }

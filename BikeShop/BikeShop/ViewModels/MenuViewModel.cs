@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Expression.Interactivity.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,7 +47,15 @@ namespace BikeShop.ViewModels
             }
         }
 
-       
+
+        private ActionCommand test;
+
+        public ICommand Test
+        {
+            get { return test; }
+            set { test = (ActionCommand)value; }
+        }
+
 
         private static void DoStuff()
         {
