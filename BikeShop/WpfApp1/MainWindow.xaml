@@ -3,18 +3,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        
         
         xmlns:local="clr-namespace:WpfApp1"
-        xmlns:vm="clr-namespace:WpfApp1.MainViewModel"
+        xmlns:util="clr-namespace:Util"
+        xmlns:vm="clr-namespace:WpfApp1.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="147" Width="316">
+        DataContext="{StaticResource sharedViewModel}"
+        Title="MainWindow" >
 
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <local:Page1 Grid.Column="0"></local:Page1>
+        <local:Page1 Grid.Column="1"></local:Page1>
+
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="제품 코드" Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="13"></TextBlock>
+            <TextBox x:Name="productCode_TxtBox"
+                             Text="{Binding Page1Name}"
+                             Grid.Column="1" HorizontalContentAlignment="Left" 
+                       VerticalContentAlignment="Center" FontSize="13" VerticalAlignment="Center" Margin="0,0,20,0" Height="30" />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock  Text="제품명" Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="13"></TextBlock>
+            <TextBox x:Name="productName_TxtBox" 
+                             Text="{Binding Page1Description}"
+                             Grid.Column="1" HorizontalContentAlignment="Left" 
+                       VerticalContentAlignment="Center" FontSize="13" VerticalAlignment="Center" Margin="0,0,20,0" Height="30" />
+        </Grid>
+
+
+        <Button Grid.Row="1" Grid.Column="1" Content="확인">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click" >
+                    <i:InvokeCommandAction Command="{Binding Signup_Command}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </Grid>
+    <!--Grid>
+        <Frame NavigationUIVisibility="Hidden" Source="Views\TabPages.xaml"/>
+    </Grid-->
+
+    <!--Grid>
         <Button  Content="Button1" IsEnabled="{Binding IsButtonEnabled}" HorizontalAlignment="Left" Margin="71,18,0,0" 
                  VerticalAlignment="Top">
             <i:Interaction.Triggers>
@@ -32,13 +84,14 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </TextBox>
-        <Button  Content="Button2" HorizontalAlignment="Left" Margin="71,58,0,0" 
+        <Button x:Name="button1" Content="Button2" HorizontalAlignment="Left" Margin="71,58,0,0" 
             VerticalAlignment="Top" RenderTransformOrigin="0.384,-1.015">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click" >
-                    <i:InvokeCommandAction Command="{Binding Mouse2_Command}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+
+            <i:Interaction.Behaviors>
+                <util:MouseBehaviour  MouseX="{Binding PanelX, Mode=OneWayToSource}"
+                                          MouseY="{Binding PanelY, Mode=OneWayToSource}" />
+            </i:Interaction.Behaviors>
+
         </Button>
         <Button  Content="Button3" IsEnabled="{Binding IsButtonEnabled}" HorizontalAlignment="Left" Margin="71,101,0,0" 
             VerticalAlignment="Top">
@@ -50,5 +103,5 @@
         </Button>
 
 
-    </Grid>
+    </Grid-->
 </Window>

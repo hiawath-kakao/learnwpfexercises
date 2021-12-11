@@ -2,8 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfApp1"
+             xmlns:vm="clr-namespace:WpfApp1.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <vm:ProductViewModel x:Key="sharedViewModel" />
     </Application.Resources>
 </Application>

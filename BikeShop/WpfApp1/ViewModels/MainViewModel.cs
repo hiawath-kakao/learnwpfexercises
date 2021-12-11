@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Microsoft.Expression.Interactivity.Core;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Util;
 
 namespace WpfApp1.MainViewModel
 {
-    public  class MainViewModel:Notifier
+    public  class MainViewModel: Notifier
     {
 
         public MainViewModel()
@@ -71,18 +75,9 @@ namespace WpfApp1.MainViewModel
             }
 
         }
-        private ICommand mouse3_Command;
-        public ICommand Mouse3_Command
-        {
-            get
-            {
-                return mouse3_Command ?? (mouse3_Command = new RelayCommand<object>(x =>
-                {
-                    DoStuff();
-                }));
-            }
 
-        }
+
+        
 
         public RelayCommand<String> OnSearchCommand { get; set; }
 
@@ -110,7 +105,38 @@ namespace WpfApp1.MainViewModel
             }
         }
 
+        private ActionCommand mouse3_Command;
 
+
+        public ICommand Mouse3_Command => mouse3_Command ??= new ActionCommand(Mouse3_);
+
+        private void Mouse3_()
+        {
+
+        }
+        private double _panelX;
+        
+        public double PanelX
+        {
+            get { return _panelX; }
+            set
+            {
+                if (value.Equals(_panelX)) return;
+                _panelX = value;
+                OnPropertyChanged("PanelX");
+            }
+        }
+        private double _panelY;
+        public double PanelY
+        {
+            get { return _panelY; }
+            set
+            {
+                if (value.Equals(_panelY)) return;
+                _panelY = value;
+                OnPropertyChanged("PanelY");
+            }
+        }
 
 
 

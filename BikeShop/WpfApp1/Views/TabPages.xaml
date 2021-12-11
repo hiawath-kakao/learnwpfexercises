@@ -1,0 +1,23 @@
+﻿<Page x:Class="WpfApp1.TabPages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" 
+      
+      Title="TabPages">
+
+    <StackPanel Orientation="Horizontal">
+        <TabItem Header="재고 입력">
+            <Grid Background="#FFE5E5E5">
+                <Frame Source="Page1.xaml"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="입출고 현황">
+            <Grid Background="#FFE5E5E5">
+                <Frame Source="Page2.xaml"/>
+            </Grid>
+        </TabItem>
+    </StackPanel>
+</Page>

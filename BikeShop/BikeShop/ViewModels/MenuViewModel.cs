@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace BikeShop.ViewModels
 {
-    internal class MenuViewModel : Notifier
+    internal partial class MenuViewModel : Notifier
     #region Logic
 
     #endregion
@@ -63,5 +63,5 @@ namespace BikeShop.ViewModels
         }
 
     }
-    #endregion
+    #endregion Command command
 }
