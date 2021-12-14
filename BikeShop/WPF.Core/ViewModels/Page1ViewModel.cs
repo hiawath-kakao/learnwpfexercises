@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using WPF.Core.Model;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WpfApp1.Model;
 
-namespace WpfApp1.ViewModel
+
+namespace WPF.Core.ViewModels
 {
     public class Page1ViewModel : Notifier
     {

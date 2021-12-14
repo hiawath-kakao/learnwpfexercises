@@ -1,16 +1,11 @@
-﻿using Microsoft.Expression.Interactivity.Core;
-using System;
-using System.Collections.Generic;
+﻿
+using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using WpfApp1.Model;
 using System.Windows.Input;
+using WPF.Core.Model;
 
-namespace WpfApp1.ViewModel
+
+namespace WPF.Core.ViewModels
 {
     public class ProductViewModel : Notifier
     {
@@ -57,25 +52,6 @@ namespace WpfApp1.ViewModel
 
         }
 
-
-
-
-
-        private ActionCommand signup_Command;
-
-        public ICommand Signup_Command
-        {
-            get
-            {
-                if (signup_Command == null)
-                {
-                    signup_Command = new ActionCommand(Signup_);
-                }
-
-                return signup_Command;
-            }
-        }
-
         public string Page1Name { get; set; }
         public string Page1Description { get; set; }
 
@@ -84,7 +60,10 @@ namespace WpfApp1.ViewModel
             Products.Add(new Product { Name = Page1Name, Description = Page1Description });
         }
 
+        private RelayCommand signupCommand;
+        public ICommand SignupCommand => signupCommand ??= new RelayCommand(Signup_);
 
+ 
     }
 
 

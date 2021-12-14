@@ -3,11 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
-        
-        xmlns:local="clr-namespace:WpfApp1"
-        xmlns:util="clr-namespace:Util"
-        xmlns:vm="clr-namespace:WpfApp1.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:WpfApp1" 
         mc:Ignorable="d"
         DataContext="{StaticResource sharedViewModel}"
         Title="MainWindow" >
@@ -24,8 +20,16 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <local:Page1 Grid.Column="0"></local:Page1>
-        <local:Page1 Grid.Column="1"></local:Page1>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <local:Page1></local:Page1>
+            
+            
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <local:Page2></local:Page2>
+
+
+        </Grid>
 
 
 
@@ -54,54 +58,9 @@
         </Grid>
 
 
-        <Button Grid.Row="1" Grid.Column="1" Content="확인">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click" >
-                    <i:InvokeCommandAction Command="{Binding Signup_Command}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Button>
+        <Button
+            Grid.Row="1" Grid.Column="1" Content="확인"
+            Command="{Binding SignupCommand}"/>
     </Grid>
-    <!--Grid>
-        <Frame NavigationUIVisibility="Hidden" Source="Views\TabPages.xaml"/>
-    </Grid-->
-
-    <!--Grid>
-        <Button  Content="Button1" IsEnabled="{Binding IsButtonEnabled}" HorizontalAlignment="Left" Margin="71,18,0,0" 
-                 VerticalAlignment="Top">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click" >
-                    <i:InvokeCommandAction Command="{Binding Mouse1_Command}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Button>
-        <TextBox   x:Name="SearchBox" HorizontalAlignment="Left" Height="20" Margin="144,58,0,0" TextWrapping="Wrap" 
-                  Text="{Binding TextData}"
-                  VerticalAlignment="Top" Width="92">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="TextChanged" >
-                    <i:InvokeCommandAction Command="{Binding OnSearchCommand}" CommandParameter="{Binding ElementName=SearchBox, Path=Text}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </TextBox>
-        <Button x:Name="button1" Content="Button2" HorizontalAlignment="Left" Margin="71,58,0,0" 
-            VerticalAlignment="Top" RenderTransformOrigin="0.384,-1.015">
-
-            <i:Interaction.Behaviors>
-                <util:MouseBehaviour  MouseX="{Binding PanelX, Mode=OneWayToSource}"
-                                          MouseY="{Binding PanelY, Mode=OneWayToSource}" />
-            </i:Interaction.Behaviors>
-
-        </Button>
-        <Button  Content="Button3" IsEnabled="{Binding IsButtonEnabled}" HorizontalAlignment="Left" Margin="71,101,0,0" 
-            VerticalAlignment="Top">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click" >
-                    <i:InvokeCommandAction Command="{Binding Mouse3_Command}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Button>
-
-
-    </Grid-->
+    
 </Window>

@@ -5,7 +5,11 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeShop", "BikeShop\BikeShop.csproj", "{54C708B5-EC8E-4B43-84F1-0B54993E5852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{5D2F9219-68A0-4A8D-8A62-FDE6D0825374}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{5D2F9219-68A0-4A8D-8A62-FDE6D0825374}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.Core", "WPF.Core\WPF.Core.csproj", "{D3A97573-EADE-44B3-9DC4-2D29664D33C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{28E1F1FC-1C1C-4119-9E0A-C0A537741B00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{5D2F9219-68A0-4A8D-8A62-FDE6D0825374}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D2F9219-68A0-4A8D-8A62-FDE6D0825374}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D2F9219-68A0-4A8D-8A62-FDE6D0825374}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A97573-EADE-44B3-9DC4-2D29664D33C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A97573-EADE-44B3-9DC4-2D29664D33C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A97573-EADE-44B3-9DC4-2D29664D33C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A97573-EADE-44B3-9DC4-2D29664D33C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E1F1FC-1C1C-4119-9E0A-C0A537741B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E1F1FC-1C1C-4119-9E0A-C0A537741B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E1F1FC-1C1C-4119-9E0A-C0A537741B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E1F1FC-1C1C-4119-9E0A-C0A537741B00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

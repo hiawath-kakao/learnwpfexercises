@@ -28,44 +28,33 @@ namespace Util
             return _canExecute == null || _canExecute((T)parameter);
         }
 
-        public event EventHandler CanExecuteChanged
+
+        event EventHandler? ICommand.CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            add
+            {
+                //CommandManager.RequerySuggested += value;
+            }
+
+            remove
+            {
+                //CommandManager.RequerySuggested -= value;
+            }
         }
 
         public void Execute(object parameter)
         {
             _execute((T)parameter);
         }
-        #endregion
 
-        #region MouseWheel
-        private RelayCommand<MouseWheelEventArgs> _mouseWheelCommand;
-        public ICommand MouseWheelCommand
+        bool ICommand.CanExecute(object? parameter)
         {
-            get
-            {
-                return this._mouseWheelCommand ??
-
-                     (this._mouseWheelCommand = new RelayCommand<MouseWheelEventArgs>(this.ExecuteMouseWheel));
-            }
+            throw new NotImplementedException();
         }
-        private void ExecuteMouseWheel(MouseWheelEventArgs e)
-        {
-            this.MouseWheel(e.Delta);
-        }
-        private void MouseWheel(int delta)
-        {
-            if (delta > 0)
-            {
-                //this.SlideValue++;
-            }
-            else
-            {
-                // this.SlideValue--;
-            }
 
+        void ICommand.Execute(object? parameter)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
