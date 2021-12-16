@@ -48,14 +48,7 @@ namespace BikeShop.ViewModels
         }
 
 
-        private ActionCommand test;
-
-        public ICommand Test
-        {
-            get { return test; }
-            set { test = (ActionCommand)value; }
-        }
-
+        
 
         private static void DoStuff()
         {

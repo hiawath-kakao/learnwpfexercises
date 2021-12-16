@@ -57,10 +57,12 @@
                        VerticalContentAlignment="Center" FontSize="13" VerticalAlignment="Center" Margin="0,0,20,0" Height="30" />
         </Grid>
 
+        <Button Grid.Row="1" Grid.Column="1" Content="확인"
+                Command="{Binding TestCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+        </Button>
 
-        <Button
-            Grid.Row="1" Grid.Column="1" Content="확인"
-            Command="{Binding SignupCommand}"/>
+            
     </Grid>
     
 </Window>
