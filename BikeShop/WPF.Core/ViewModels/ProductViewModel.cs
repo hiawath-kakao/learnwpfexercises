@@ -13,21 +13,11 @@ using WPF.Core.Model;
 
 namespace WPF.Core.ViewModels
 {
-    public class ProductViewModel : ObservableObject
+    public partial class ProductViewModel : ObservableObject
     {
-        
+        [ObservableProperty]
         private ObservableCollection<Product> products;
-        public ObservableCollection<Product> Products
-        {
-            get
-            {
-                return products;
-            }
-            set
-            {
-                SetProperty(ref products, value);
-            }
-        }
+        
 
         public List<Product> GetProduct()
         {
@@ -48,9 +38,6 @@ namespace WPF.Core.ViewModels
             return list;
 
         }
-
-
-
         public ProductViewModel()
         {
             List<Product> list = GetProduct();

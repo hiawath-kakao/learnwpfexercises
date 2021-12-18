@@ -2,44 +2,20 @@
 
 namespace WPF.Core.Model
 {
-    public class Product : ObservableObject
+    public partial class Product : ObservableObject
     {
+        [ObservableProperty]
         private string name;
 
-        public string Name
-        {
-            get { return name; }
-            set { SetProperty(ref name, value); }
-        }
-
+        [ObservableProperty]
         double price;
 
-        public double Price
-        {
-            get { return price; }
-            set { SetProperty(ref price, value); }
-        }
-
+        [ObservableProperty]
         private string description;
 
-        public string Description
-        {
-            get { return description; }
-            set { SetProperty(ref description, value); }
-        }
-
+        [ObservableProperty]
         private bool isChecked;
-        public bool IsChecked
-        {
-            get
-            {
-                return isChecked;
-            }
-            set
-            {
-                SetProperty(ref isChecked, value);
-            }
-        }
+        
 
     }
 }
