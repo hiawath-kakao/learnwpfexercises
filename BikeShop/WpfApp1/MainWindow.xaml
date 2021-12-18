@@ -3,14 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
-
 
         xmlns:local="clr-namespace:WpfApp1" 
         
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        DataContext="{StaticResource sharedViewModel}"
+        DataContext="{Binding PMV, Source={StaticResource ViewModelLocator}}"
         Title="MainWindow" >
 
 
@@ -37,51 +35,79 @@
         </Grid>
 
 
+        <Grid Grid.Row="2">
 
-        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="제품 코드" Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="13"></TextBlock>
-            <TextBox x:Name="productCode_TxtBox"
+            <DataGrid  x:Name="dg00"
+                AutoGenerateColumns="False" 
+                   Height="100"
+                ItemsSource="{Binding Products, Mode=TwoWay}" 
+                   
+                SelectionMode="Extended"
+                SelectionUnit="FullRow">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="Auto" Header="ID" Binding="{Binding Name, Mode=TwoWay}"/>
+                    <DataGridTextColumn Width="Auto" Header="Price" Binding="{Binding Price, Mode=TwoWay}"/>
+                    <DataGridTextColumn Width="Auto" Header="Description" Binding="{Binding Description, Mode=TwoWay}"/>
+                    <DataGridCheckBoxColumn Width="Auto" Header="Checked" Binding="{Binding IsChecked , Mode=TwoWay}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="제품 코드" Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="13"></TextBlock>
+                <TextBox x:Name="productCode_TxtBox"
                              Text="{Binding Page1Name}"
                              Grid.Column="1" HorizontalContentAlignment="Left" 
                        VerticalContentAlignment="Center" FontSize="13" VerticalAlignment="Center" Margin="0,0,20,0" Height="30" />
-        </Grid>
+            </Grid>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock  Text="제품명" Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="13"></TextBlock>
-            <TextBox x:Name="productName_TxtBox" 
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock  Text="제품명" Margin="20" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="13"></TextBlock>
+                <TextBox x:Name="productName_TxtBox" 
                              Text="{Binding Page1Description}"
                              Grid.Column="1" HorizontalContentAlignment="Left" 
                        VerticalContentAlignment="Center" FontSize="13" VerticalAlignment="Center" Margin="0,0,20,0" Height="30" />
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <TextBlock  Text="{Binding TotalPrice}" ></TextBlock>
+            </Grid>
+
+            <Button
+            Grid.Row="1" Grid.Column="1" Content="추가" Command="{Binding AddCommand}"
+           />
+            <Button
+            Grid.Row="2" Grid.Column="1" Content="제거" Command="{Binding RemoveCommand}"
+           />
+
+
+            <!--Button Grid.Row="1" Grid.Column="1" Content="확인">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click" >
+                    <i:InvokeCommandAction Command="{Binding Signup_Command}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button-->
+
+
+
         </Grid>
-
-
-        <StackPanel Grid.Row="1" Grid.Column="1" >
-            <Border   BorderThickness="10,10,10,10" BorderBrush="Black">
-                <Button Content="확인"
-                    Command="{Binding TestCommand}"
-
-                    CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="61,0,0,39">
-                </Button>
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding ItemSelectedCommand}" 
-                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}}"
-                                               />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </Border>
-            
-            
-            
-        </StackPanel>
 
     </Grid>
     

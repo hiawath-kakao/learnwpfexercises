@@ -5,15 +5,6 @@
              xmlns:vm="clr-namespace:WPF.Core.ViewModels;assembly=WPF.Core"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                
-            </ResourceDictionary.MergedDictionaries>
-
-            <vm:ProductViewModel x:Key="sharedViewModel" />
-            <Style x:Key="Test" />
-
-        </ResourceDictionary>
+        <local:ViewModelLocator x:Key="ViewModelLocator"/>
     </Application.Resources>
 </Application>

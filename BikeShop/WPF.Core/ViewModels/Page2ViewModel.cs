@@ -2,7 +2,9 @@
 
 namespace WPF.Core.ViewModels
 {
-    public class Page2ViewModel : ObservableObject
+    public partial class Page2ViewModel : ObservableObject
     {
+        [ObservableProperty]
+        string testText="Hello World"; 
     }
 }
