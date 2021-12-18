@@ -1,7 +1,11 @@
 ﻿
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Xaml.Behaviors.Core;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Net;
 using System.Windows.Input;
 using WPF.Core.Model;
@@ -50,9 +54,56 @@ namespace WPF.Core.ViewModels
         public ProductViewModel()
         {
             List<Product> list = GetProduct();
-            Products = new ObservableCollection<Product>(list);
+            
+            Products = new ObservableCollection<Product>();
+            Products.CollectionChanged += ContentCollectionChanged;
+            Products.Add(new Product { Name = "1", Description = "a1", Price=100 });
+            Products.Add(new Product { Name = "2", Description = "a2", Price = 200 });
+            Products.Add(new Product { Name = "3", Description = "a3", Price = 300 });
 
         }
+
+        private void ContentCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems != null)
+            {
+                foreach (INotifyPropertyChanged removed in e.OldItems)
+                {
+                    removed.PropertyChanged -= ProductOnPropertyChanged;
+                }
+            }
+            else
+            {
+                foreach (INotifyPropertyChanged added in e.NewItems)
+                {
+                    added.PropertyChanged += ProductOnPropertyChanged;
+                }
+            }
+
+        }
+        private void ProductOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            var product = sender as Product;
+            if(product!=null)
+            {
+                var checkedTotalPrice = from p in Products
+                                        where p.IsChecked
+                                        select p.Price;
+                double totalPrice = 0;
+                foreach (var item in checkedTotalPrice)
+                {
+                    totalPrice += item;
+                }
+                TotalPrice = totalPrice.ToString();
+            }
+            
+        }
+
+
+
+
+
+
 
         public string Page1Name { get; set; }
         public string Page1Description { get; set; }
@@ -102,9 +153,9 @@ namespace WPF.Core.ViewModels
 
         private void TestRun(object x)
         {
-            ///var a = (x as System.Windows.Controls.Button).Name;
+            //var a = (x as System.Windows.Controls).Name;
             //MessageBox.Show((x as Button).Name);
-            
+
         }
 
         private bool TestCheck(object x)
@@ -113,6 +164,56 @@ namespace WPF.Core.ViewModels
             //return x is Button;
         }
 
+        private RelayCommand itemSelectedCommand;
+        public ICommand ItemSelectedCommand => new RelayCommand<object>(SelectedRun, SelectedCheck);
+
+        private void SelectedRun(object x)
+        {
+            Console.WriteLine("Test");
+        }
+        private bool SelectedCheck(object x)
+        {
+            Console.WriteLine("Test");
+            return true;
+        }
+
+        private ActionCommand button_Click;
+        public ICommand Button_Click => button_Click ??= new ActionCommand(PerformButton_Click);
+
+        private void PerformButton_Click()
+        {
+            foreach (var item in Products)
+            {
+                if (item.IsChecked)
+                {
+                    Debug.WriteLine($"{item.Name}");
+                }
+            }
+            
+        }
+
+        private ActionCommand addCommand;
+        public ICommand AddCommand => addCommand ??= new ActionCommand(Add1);
+
+        private void Add1()
+        {
+            var last=Products[Products.Count-1];
+            Products.Add(new Product { Name = $"{int.Parse(last.Name) + 1}", Description = $"{ "a" + (int.Parse(last.Name) + 1)}" });
+        }
+
+        private ActionCommand removeCommand;
+        public ICommand RemoveCommand => removeCommand ??= new ActionCommand(Remove);
+
+        private void Remove()
+        {
+            var last = Products[Products.Count - 1];
+            Products.Remove(last);
+
+        }
+
+        private string totalPrice;
+
+        public string TotalPrice { get => totalPrice; set => SetProperty(ref totalPrice, value); }
     }
 
 

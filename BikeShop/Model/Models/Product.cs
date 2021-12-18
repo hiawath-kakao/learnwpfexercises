@@ -1,16 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace WPF.Core.Model
 {
-    public class Product
+    public class Product : ObservableObject
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        private string name;
 
+        public string Name
+        {
+            get { return name; }
+            set { SetProperty(ref name, value); }
+        }
+
+        double price;
+
+        public double Price
+        {
+            get { return price; }
+            set { SetProperty(ref price, value); }
+        }
+
+        private string description;
+
+        public string Description
+        {
+            get { return description; }
+            set { SetProperty(ref description, value); }
+        }
+
+        private bool isChecked;
+        public bool IsChecked
+        {
+            get
+            {
+                return isChecked;
+            }
+            set
+            {
+                SetProperty(ref isChecked, value);
+            }
+        }
 
     }
 }

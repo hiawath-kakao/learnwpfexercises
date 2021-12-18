@@ -5,6 +5,15 @@
              xmlns:vm="clr-namespace:WPF.Core.ViewModels;assembly=WPF.Core"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <vm:ProductViewModel x:Key="sharedViewModel" />
+        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+            </ResourceDictionary.MergedDictionaries>
+
+            <vm:ProductViewModel x:Key="sharedViewModel" />
+            <Style x:Key="Test" />
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

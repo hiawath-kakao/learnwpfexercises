@@ -3,7 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+
+
         xmlns:local="clr-namespace:WpfApp1" 
+        
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         DataContext="{StaticResource sharedViewModel}"
         Title="MainWindow" >
@@ -11,12 +16,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="300"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
@@ -57,12 +62,27 @@
                        VerticalContentAlignment="Center" FontSize="13" VerticalAlignment="Center" Margin="0,0,20,0" Height="30" />
         </Grid>
 
-        <Button Grid.Row="1" Grid.Column="1" Content="확인"
-                Command="{Binding TestCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
-        </Button>
 
+        <StackPanel Grid.Row="1" Grid.Column="1" >
+            <Border   BorderThickness="10,10,10,10" BorderBrush="Black">
+                <Button Content="확인"
+                    Command="{Binding TestCommand}"
+
+                    CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Margin="61,0,0,39">
+                </Button>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding ItemSelectedCommand}" 
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}}"
+                                               />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Border>
             
+            
+            
+        </StackPanel>
+
     </Grid>
     
 </Window>
