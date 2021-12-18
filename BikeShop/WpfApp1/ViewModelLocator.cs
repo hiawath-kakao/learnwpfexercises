@@ -1,4 +1,5 @@
-﻿using Microsoft.Toolkit.Mvvm.DependencyInjection;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace WpfApp1
         public ProductViewModel PMV => Ioc.Default.GetService<ProductViewModel>();
         public Page1ViewModel P1VM => Ioc.Default.GetService<Page1ViewModel>();
         public Page2ViewModel P2MV => Ioc.Default.GetService<Page2ViewModel>();
+        //public ILogger  P3MV=> App.Ioc.Default.GetService<ILogger>();
     }
 }

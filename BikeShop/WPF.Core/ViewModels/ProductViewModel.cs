@@ -1,5 +1,7 @@
 ﻿
+using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Xaml.Behaviors.Core;
 using System.Collections.ObjectModel;
@@ -15,6 +17,8 @@ namespace WPF.Core.ViewModels
 {
     public partial class ProductViewModel : ObservableObject
     {
+        private readonly ILogger _logger;
+
         [ObservableProperty]
         private ObservableCollection<Product> products;
         
@@ -38,8 +42,13 @@ namespace WPF.Core.ViewModels
             return list;
 
         }
-        public ProductViewModel()
+        public ProductViewModel(ILogger<ProductViewModel> logger)
         {
+            _logger = logger;
+            //_logger = Ioc.Default.GetService<Page1ViewModel>();
+            // read configuration
+            //var test = Ioc.Default.GetService<ILogger>(ProductViewModel);
+
             List<Product> list = GetProduct();
             
             Products = new ObservableCollection<Product>();
@@ -47,6 +56,7 @@ namespace WPF.Core.ViewModels
             Products.Add(new Product { Name = "1", Description = "a1", Price=100 });
             Products.Add(new Product { Name = "2", Description = "a2", Price = 200 });
             Products.Add(new Product { Name = "3", Description = "a3", Price = 300 });
+            _logger.LogInformation("{@ILogger}", logger);
 
         }
 
@@ -57,6 +67,7 @@ namespace WPF.Core.ViewModels
                 foreach (INotifyPropertyChanged removed in e.OldItems)
                 {
                     removed.PropertyChanged -= ProductOnPropertyChanged;
+                    _logger.LogInformation("remove content");
                 }
             }
             else
@@ -64,15 +75,18 @@ namespace WPF.Core.ViewModels
                 foreach (INotifyPropertyChanged added in e.NewItems)
                 {
                     added.PropertyChanged += ProductOnPropertyChanged;
+                    _logger.LogInformation("add content");
                 }
             }
 
         }
         private void ProductOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
+            
             var product = sender as Product;
             if(product!=null)
             {
+                _logger.LogInformation("{@Product}", product);
                 var checkedTotalPrice = from p in Products
                                         where p.IsChecked
                                         select p.Price;
