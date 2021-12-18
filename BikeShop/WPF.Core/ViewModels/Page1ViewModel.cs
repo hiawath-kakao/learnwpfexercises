@@ -3,7 +3,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace WPF.Core.ViewModels
 {
-    public class Page1ViewModel : ObservableObject
+    public class Page1ViewModel : ObservableRecipient
     {
         private readonly ILogger _logger;
         public Page1ViewModel(ILogger<Page1ViewModel> logger)

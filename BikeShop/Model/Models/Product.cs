@@ -4,8 +4,15 @@ namespace WPF.Core.Model
 {
     public partial class Product : ObservableObject
     {
-        [ObservableProperty]
+        //[ObservableProperty]
         private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { SetProperty(ref name, value); }
+        }
+
 
         [ObservableProperty]
         double price;

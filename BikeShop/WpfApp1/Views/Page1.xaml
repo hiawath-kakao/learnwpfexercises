@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfApp1"
 
              DataContext="{Binding PMV, Source={StaticResource ViewModelLocator}}"
-             mc:Ignorable="d" >
+             mc:Ignorable="d" Loaded="UserControl_Loaded" >
 
     <Grid >
         

@@ -1,8 +1,8 @@
 ﻿
 using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Microsoft.Xaml.Behaviors.Core;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -15,33 +15,21 @@ using WPF.Core.Model;
 
 namespace WPF.Core.ViewModels
 {
-    public partial class ProductViewModel : ObservableObject
+    public partial class ProductViewModel : ObservableRecipient
     {
         private readonly ILogger _logger;
 
         [ObservableProperty]
         private ObservableCollection<Product> products;
-        
 
-        public List<Product> GetProduct()
-        {
-            List<Product> list = new List<Product>();
-            list = new List<Product>();
-            list.Add(new Product { Name = "1", Description = "a1" });
-            list.Add(new Product { Name = "2", Description = "a2" });
-            list.Add(new Product { Name = "3", Description = "a3" });
-            list.Add(new Product { Name = "4", Description = "a4" });
-            list.Add(new Product { Name = "5", Description = "a5" });
-            list.Add(new Product { Name = "6", Description = "a6" });
-            list.Add(new Product { Name = "7", Description = "a7" });
-            list.Add(new Product { Name = "8", Description = "a8" });
-            list.Add(new Product { Name = "9", Description = "a9" });
-            list.Add(new Product { Name = "10", Description = "a10" });
+        //public ObservableCollection<Product> Products
+        //{
+        //    get { return products; }
+        //    set { SetProperty(ref products, value, true); }
+        //}
 
 
-            return list;
 
-        }
         public ProductViewModel(ILogger<ProductViewModel> logger)
         {
             _logger = logger;
@@ -87,6 +75,8 @@ namespace WPF.Core.ViewModels
             if(product!=null)
             {
                 _logger.LogInformation("{@Product}", product);
+                Messenger.Send(Products);
+
                 var checkedTotalPrice = from p in Products
                                         where p.IsChecked
                                         select p.Price;
@@ -100,7 +90,10 @@ namespace WPF.Core.ViewModels
             
         }
 
-
+        public void FuncMessageSendTest()
+        {
+            Messenger.Send(Products);
+        }
 
 
 
@@ -212,9 +205,31 @@ namespace WPF.Core.ViewModels
 
         }
 
+
         private string totalPrice;
 
         public string TotalPrice { get => totalPrice; set => SetProperty(ref totalPrice, value); }
+
+        public List<Product> GetProduct()
+        {
+            List<Product> list = new List<Product>
+            {
+                new Product { Name = "1", Description = "a1" },
+                new Product { Name = "2", Description = "a2" },
+                new Product { Name = "3", Description = "a3" },
+                new Product { Name = "4", Description = "a4" },
+                new Product { Name = "5", Description = "a5" },
+                new Product { Name = "6", Description = "a6" },
+                new Product { Name = "7", Description = "a7" },
+                new Product { Name = "8", Description = "a8" },
+                new Product { Name = "9", Description = "a9" },
+                new Product { Name = "10", Description = "a10" }
+            };
+
+
+            return list;
+
+        }
     }
 
 
