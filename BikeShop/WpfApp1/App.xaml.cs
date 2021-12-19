@@ -25,6 +25,7 @@ namespace WpfApp1
                     //.AddTransient<ProductViewModel>()
                     .AddSingleton<Page1ViewModel>()
                     .AddSingleton<Page2ViewModel>()
+                    .AddSingleton<Page3ViewModel>()
                     .AddSingleton<MainWindow>()
                     .AddLogging(builder =>
                     {

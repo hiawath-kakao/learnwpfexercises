@@ -33,7 +33,7 @@ namespace WpfApp1
             if (IsVisible)
             {
                 var pvm = Ioc.Default.GetService<Page2ViewModel>();
-                pvm.IsActive = true;
+                //pvm.IsActive = true;
             }
             
         }

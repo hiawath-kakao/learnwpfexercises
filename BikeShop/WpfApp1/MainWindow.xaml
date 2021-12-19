@@ -20,24 +20,26 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="0">
             <local:Page1></local:Page1>
-            
-            
         </Grid>
+        
         <Grid Grid.Row="0" Grid.Column="1">
             <local:Page2></local:Page2>
-
-
         </Grid>
-
+        
+        <Grid Grid.Row="0" Grid.Column="2">
+            <local:Page3></local:Page3>
+        </Grid>
 
         <Grid Grid.Row="2">
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -94,6 +96,9 @@
            />
             <Button
             Grid.Row="2" Grid.Column="1" Content="제거" Command="{Binding RemoveCommand}"
+           />
+            <Button
+            Grid.Row="3" Grid.Column="1" Content="Test" Command="{Binding TestCommand}"
            />
 
 

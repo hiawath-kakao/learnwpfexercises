@@ -9,7 +9,7 @@ using WPF.Core.Model;
 
 namespace WPF.Core.ViewModels
 {
-    public partial class Page2ViewModel : ObservableRecipient, IRecipient<ObservableCollection<Product>>
+    public partial class Page3ViewModel : ObservableRecipient, IRecipient<ObservableCollection<Product>>, IRecipient<Product>
     {
         private readonly ILogger _logger;
 
@@ -21,7 +21,7 @@ namespace WPF.Core.ViewModels
             set => SetProperty(ref messageProducts, value);
         }   
 
-        public Page2ViewModel(ILogger<Page2ViewModel> logger)
+        public Page3ViewModel(ILogger<Page3ViewModel> logger)
         {
             _logger = logger;
             _logger.LogWarning("{@ILogger}", logger);
@@ -40,6 +40,11 @@ namespace WPF.Core.ViewModels
                 MessageProducts.Add(item);
             }
             
+        }
+
+        public void Receive(Product message)
+        {
+            Console.WriteLine("");
         }
         [ObservableProperty]
         private string totalPrice;
@@ -64,6 +69,7 @@ namespace WPF.Core.ViewModels
         private void Remove()
         {
         }
-        
+
+ 
     }
 }

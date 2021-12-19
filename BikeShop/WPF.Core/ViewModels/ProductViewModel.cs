@@ -19,14 +19,14 @@ namespace WPF.Core.ViewModels
     {
         private readonly ILogger _logger;
 
-        [ObservableProperty]
+        //[ObservableProperty]
         private ObservableCollection<Product> products;
 
-        //public ObservableCollection<Product> Products
-        //{
-        //    get { return products; }
-        //    set { SetProperty(ref products, value, true); }
-        //}
+        public ObservableCollection<Product> Products
+        {
+            get { return products; }
+            set { SetProperty(ref products, value, true); }
+        }
 
 
 
@@ -36,7 +36,7 @@ namespace WPF.Core.ViewModels
             //_logger = Ioc.Default.GetService<Page1ViewModel>();
             // read configuration
             //var test = Ioc.Default.GetService<ILogger>(ProductViewModel);
-
+           
             List<Product> list = GetProduct();
             
             Products = new ObservableCollection<Product>();
@@ -45,6 +45,17 @@ namespace WPF.Core.ViewModels
             Products.Add(new Product { Name = "2", Description = "a2", Price = 200 });
             Products.Add(new Product { Name = "3", Description = "a3", Price = 300 });
             _logger.LogInformation("{@ILogger}", logger);
+
+            //WeakReferenceMessenger.Default.Register<ObservableCollection<Product>>(this, (r, m) =>
+            //{
+
+            //    // Handle the message here, with r being the recipient and m being the
+            //    // input messenger. Using the recipient passed as input makes it so that
+            //    // the lambda expression doesn't capture "this", improving performance.
+            //});
+
+            //this.IsActive = true;
+            //Messenger.Register<ProductViewModel, ObservableCollection<Product>>(this, (r, m) => Console.WriteLine(""));
 
         }
 
@@ -75,7 +86,8 @@ namespace WPF.Core.ViewModels
             if(product!=null)
             {
                 _logger.LogInformation("{@Product}", product);
-                Messenger.Send(Products);
+                //Messenger.Send(Products);
+                WeakReferenceMessenger.Default.Send(Products);
 
                 var checkedTotalPrice = from p in Products
                                         where p.IsChecked
@@ -149,6 +161,15 @@ namespace WPF.Core.ViewModels
         {
             //var a = (x as System.Windows.Controls).Name;
             //MessageBox.Show((x as Button).Name);
+            Messenger.Send(new Product
+            {
+                Description = "Test",
+                Name = "Test",
+                Price = 200,
+                IsChecked = true
+
+
+            }); ;
 
         }
 
@@ -230,6 +251,8 @@ namespace WPF.Core.ViewModels
             return list;
 
         }
+
+
     }
 
 
