@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
+        xmlns:vm="clr-namespace:WPF.Core.ViewModels;assembly=WPF.Core"
         xmlns:local="clr-namespace:WpfApp1" 
         
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" d:DataContext="{d:DesignInstance Type=vm:OpenFileDialogViewModel}"
         mc:Ignorable="d"
         DataContext="{Binding PMV, Source={StaticResource ViewModelLocator}}"
         Title="MainWindow" >
@@ -109,10 +109,14 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </Button-->
-
-
-
         </Grid>
+
+        <StackPanel Grid.Row="1" Grid.Column="1"  
+                    DataContext="{Binding ODMV, Source={StaticResource ViewModelLocator}}">
+            <TextBox Text="{Binding SelectedPath}" />
+            <Button Command="{Binding OpenCommand }" >Browse</Button>
+        </StackPanel>
+
 
     </Grid>
     

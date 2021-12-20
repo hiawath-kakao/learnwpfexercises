@@ -26,6 +26,8 @@ namespace WpfApp1
                     .AddSingleton<Page1ViewModel>()
                     .AddSingleton<Page2ViewModel>()
                     .AddSingleton<Page3ViewModel>()
+                    .AddSingleton<OpenFileDialogViewModel>()
+                    
                     .AddSingleton<MainWindow>()
                     .AddLogging(builder =>
                     {
