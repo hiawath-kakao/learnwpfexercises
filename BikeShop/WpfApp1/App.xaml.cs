@@ -16,7 +16,7 @@ namespace WpfApp1
         {
 
             //Services = ConfigureServices();
-
+            //ViewModel에 등록해야한다. 
             Ioc.Default.ConfigureServices 
                 (new ServiceCollection()
                     //.AddSingleton<IMessenger>(WeakReferenceMessenger.Default)

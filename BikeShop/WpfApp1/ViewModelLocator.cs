@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Xaml.Behaviors.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using WPF.Core;
 using WPF.Core.ViewModels;
 
@@ -18,7 +20,8 @@ namespace WpfApp1
         public Page2ViewModel P2MV => Ioc.Default.GetService<Page2ViewModel>();
         public Page3ViewModel P3MV => Ioc.Default.GetService<Page3ViewModel>();
         public OpenFileDialogViewModel ODMV => Ioc.Default.GetService<OpenFileDialogViewModel>();
-        
+
+
         //public ILogger  P3MV=> App.Ioc.Default.GetService<ILogger>();
     }
 }

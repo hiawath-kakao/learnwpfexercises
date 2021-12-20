@@ -109,8 +109,7 @@ namespace WPF.Core.ViewModels
 
 
 
-
-
+        [Obsolete]
         public string Page1Name { get; set; }
         public string Page1Description { get; set; }
 
