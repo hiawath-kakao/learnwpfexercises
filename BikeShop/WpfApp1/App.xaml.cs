@@ -26,6 +26,9 @@ namespace WpfApp1
                     .AddSingleton<Page1ViewModel>()
                     .AddSingleton<Page2ViewModel>()
                     .AddSingleton<Page3ViewModel>()
+                    .AddSingleton<MypageController>()
+                    .AddSingleton<HomeController>()
+                    
                     .AddSingleton<OpenFileDialogViewModel>()
                     
                     .AddSingleton<MainWindow>()

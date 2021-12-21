@@ -21,6 +21,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
@@ -34,6 +35,9 @@
         
         <Grid Grid.Row="0" Grid.Column="2">
             <local:Page3></local:Page3>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="3">
+            <local:Page4></local:Page4>
         </Grid>
 
         <Grid Grid.Row="2">

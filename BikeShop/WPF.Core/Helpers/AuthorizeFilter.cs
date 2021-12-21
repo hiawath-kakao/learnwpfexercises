@@ -9,9 +9,12 @@ using Microsoft.AspNetCore.Routing;
 
 namespace WpfApp1
 {
-    public class CheckUser : ActionFilterAttribute, IActionFilter
+    public class CheckUser : ActionFilterAttribute
     {
+        public CheckUser()
+        {
 
+        }
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             var ctx = context.HttpContext;
