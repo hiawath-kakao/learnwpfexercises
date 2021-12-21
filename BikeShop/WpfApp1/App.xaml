@@ -6,11 +6,8 @@
              Startup="Application_Startup"
              Exit="Application_Exit">
     <Application.Resources>
-        <ResourceDictionary>
+
             <local:ViewModelLocator x:Key="ViewModelLocator"/>
-            <ResourceDictionary.MergedDictionaries>
-               
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+
     </Application.Resources>
 </Application>

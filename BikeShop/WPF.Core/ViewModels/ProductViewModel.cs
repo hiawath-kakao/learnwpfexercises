@@ -251,7 +251,20 @@ namespace WPF.Core.ViewModels
 
         }
 
+        private ActionCommand doubleClickCommand;
+        public ICommand DoubleClickCommand => doubleClickCommand ??= new ActionCommand(DoubleClick);
 
+        private void DoubleClick()
+        {
+            //var selectedProduct=CollectionView.CurrentItem as Product;
+            var selectedP = SelectedItem;
+        }
+        public ICollectionView CollectionView { get; set; }
+
+        private Product selectedItem;
+
+        public Product SelectedItem { get => selectedItem; 
+            set => SetProperty(ref selectedItem, value); }
     }
 
 
